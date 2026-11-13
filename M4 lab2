@@ -1,0 +1,73 @@
+while True:
+    print("\n--- STUDENT DATA MANAGER ---")
+    print("1. Add Student Record")
+    print("2. View All Records")
+    print("3. Search Student by Roll No")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    # Add student record to file
+    if choice == "1":
+        roll = input("Enter roll number: ")
+
+        while True:
+            name = input("Enter name: ")
+            if name.replace(" ", "").isalpha():
+                break
+            else:
+                print("Invalid name! Please enter alphabets only (no numbers).")
+
+        branch = input("Enter branch: ")
+
+        file = open("students.txt", "a")
+        file.write(roll + "," + name + "," + branch + "\n")
+        file.close()
+
+        print("Record saved to file.")
+
+    # View all records
+    elif choice == "2":
+        print("\n--- STUDENT RECORDS ---")
+        try:
+            file = open("students.txt", "r")
+            for line in file:
+                data = line.strip().split(",")
+                print("Roll No:", data[0])
+                print("Name:", data[1])
+                print("Branch:", data[2])
+                print("-------------------")
+            file.close()
+        except FileNotFoundError:
+            print("No records file found.")
+
+    # Search student
+    elif choice == "3":
+        search_roll = input("Enter roll number to search: ")
+        found = False
+
+        try:
+            file = open("students.txt", "r")
+            for line in file:
+                data = line.strip().split(",")
+                if data[0] == search_roll:
+                    print("\nStudent Found")
+                    print("Roll No:", data[0])
+                    print("Name:", data[1])
+                    print("Branch:", data[2])
+                    found = True
+                    break
+            file.close()
+
+            if not found:
+                print("Student not found.")
+        except FileNotFoundError:
+            print("No records file found.")
+
+    # Exit
+    elif choice == "4":
+        print("Exiting Student Data Manager...")
+        break
+
+    else:
+        print("Invalid choice.")
