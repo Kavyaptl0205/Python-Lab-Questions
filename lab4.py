@@ -1,54 +1,22 @@
-attendance = {}
+print("========== ELECTRICITY BILL GENERATOR ==========")
+consumer_name = input("Enter Consumer Name: ")
+consumer_id = input("Enter Consumer ID: ")
+previous_reading = float(input("Enter Previous Meter Reading (kWh): "))
+current_reading = float(input("Enter Current Meter Reading (kWh): "))
+cost_per_unit = float(input("Enter Cost per Unit (₹): "))
+units = current_reading - previous_reading
+energy_charge = units * cost_per_unit
+electricity_duty = energy_charge * 0.05
+fixed_charge = 100
+net_bill = energy_charge + electricity_duty + fixed_charge
 
-while True:
-    print("\n--- ATTENDANCE TRACKER ---")
-    print("1. Mark Attendance")
-    print("2. View Attendance Report")
-    print("3. Exit")
-
-    choice = input("Enter your choice: ")
-
-    # Mark attendance
-    if choice == "1":
-        while True:
-            name = input("Enter student name: ")
-            if name.replace(" ", "").isalpha():
-                break
-            else:
-                print("Invalid name! Please enter alphabets only (no numbers).")
-
-        status = input("Enter status (P for Present / A for Absent): ").upper()
-
-        if name not in attendance:
-            attendance[name] = {"present": 0, "total": 0}
-
-        attendance[name]["total"] = attendance[name]["total"] + 1
-
-        if status == "P":
-            attendance[name]["present"] = attendance[name]["present"] + 1
-
-        print("Attendance marked successfully.")
-
-    # View report
-    elif choice == "2":
-        if len(attendance) == 0:
-            print("No attendance records found.")
-        else:
-            print("\n--- ATTENDANCE REPORT ---")
-            for name in attendance:
-                present = attendance[name]["present"]
-                total = attendance[name]["total"]
-                percentage = (present / total) * 100
-
-                print("Student:", name)
-                print("Present:", present, "/", total)
-                print("Percentage:", round(percentage, 2), "%")
-                print("-------------------")
-
-    # Exit
-    elif choice == "3":
-        print("Exiting Attendance Tracker...")
-        break
-
-    else:
-        print("Invalid choice.")
+print("\n============== ELECTRICITY BILL ==============")
+print(f"Consumer Name        : {consumer_name}")
+print(f"Consumer ID          : {consumer_id}")
+print(f"Units Consumed       : {units:.2f} kWh")
+print(f"Energy Charge        : ₹{energy_charge:.2f}")
+print(f"Electricity Duty(5%) : ₹{electricity_duty:.2f}")
+print(f"Fixed Meter Charge   : ₹{fixed_charge:.2f}")
+print("----------------------------------------------")
+print(f"Net Bill Amount      : ₹{net_bill:.2f}")
+print("==============================================")

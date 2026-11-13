@@ -1,91 +1,23 @@
-contacts = []
+# Student Information and Academic Summary
 
-while True:
-    print("\n--- CONTACT BOOK ---")
-    print("1. Add Contact")
-    print("2. View Contacts")
-    print("3. Search Contact")
-    print("4. Delete Contact")
-    print("5. Exit")
+name = input("Enter Student Name: ")
+usn = input("Enter USN: ")
+branch = input("Enter Branch: ")
+semester = int(input("Enter Semester: "))
 
-    choice = input("Enter your choice: ")
+mark1 = float(input("Enter Marks in Subject 1: "))
+mark2 = float(input("Enter Marks in Subject 2: "))
+mark3 = float(input("Enter Marks in Subject 3: "))
 
-    # Add contact
-    if choice == "1":
-        while True:
-            name = input("Enter name: ")
-            if name.replace(" ", "").isalpha():
-                break
-            else:
-                print("Invalid name! Please enter alphabets only (no numbers).")
+total = mark1 + mark2 + mark3
+average = total / 3
 
-        phone = input("Enter phone number: ")
-        email = input("Enter email: ")
+print("\nSTUDENT REPORT ")
+print(f"Name       : {name}")
+print(f"USN        : {usn}")
+print(f"Branch     : {branch}")
+print(f"Semester   : {semester}")
+print(f"Total Marks: {total}")
+print(f"Average    : {average:.2f}")
 
-        contact = {
-            "name": name,
-            "phone": phone,
-            "email": email
-        }
-
-        contacts.append(contact)
-
-        print("Contact added successfully.")
-
-    # View contacts
-    elif choice == "2":
-        if len(contacts) == 0:
-            print("No contacts available.")
-        else:
-            print("\n--- ALL CONTACTS ---")
-
-            for contact in contacts:
-                print("Name:", contact["name"])
-                print("Phone:", contact["phone"])
-                print("Email:", contact["email"])
-                print("-------------------")
-
-    # Search contact
-    elif choice == "3":
-        search_name = input("Enter name to search: ")
-
-        found = False
-
-        for contact in contacts:
-            if contact["name"].lower() == search_name.lower():
-                print("\nContact Found")
-                print("Name:", contact["name"])
-                print("Phone:", contact["phone"])
-                print("Email:", contact["email"])
-
-                found = True
-                break
-
-        if not found:
-            print("Contact not found.")
-
-    # Delete contact
-    elif choice == "4":
-        delete_name = input("Enter name to delete: ")
-
-        found = False
-
-        for contact in contacts:
-            if contact["name"].lower() == delete_name.lower():
-                contacts.remove(contact)
-
-                print("Contact deleted successfully.")
-
-                found = True
-                break
-
-        if not found:
-            print("Contact not found.")
-
-    # Exit
-    elif choice == "5":
-        print("Exiting Contact Book...")
-        break
-
-    else:
-        print("Invalid choice.")
+    
