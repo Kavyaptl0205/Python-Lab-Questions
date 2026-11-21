@@ -1,7 +1,10 @@
-Product,Sales
-Laptop,50000
-Mobile,30000
-Tablet,20000
-Headphones,10000
-Keyboard,5000
-Mouse,3000
+Date,Product,Sales
+2026-01-01,Pen,100
+2026-01-01,Book,200
+2026-01-02,Pen,150
+2026-01-02,Book,250
+2026-01-03,Pen,120
+2026-01-03,Book,180
+2026-01-04,Pen,200
+2026-01-04,Book,300
+
